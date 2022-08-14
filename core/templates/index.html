@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Hello world
+
+    <ul>
+        {% for person in persons %}
+            <li> {{ person.id }} - {{ person.name }} 
+                <a href="{% url 'detail' person.id %}">Edit</a>
+                <a href="{% url 'delete' person.id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <form action="{% url 'save' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="person_name">
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
